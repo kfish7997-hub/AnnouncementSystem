@@ -30,15 +30,14 @@ export type AnnouncementDisplay = typeof(setmetatable({} :: {
 	Janitor: any,
 }, AnnouncementDisplay))
 --//Init function for creating a new message to display on the screen
-function AnnouncementDisplay.new(Message: string,Duration: number,Username: string): AnnouncementDisplay
-	local self: AnnouncementDisplay = setmetatable({}, AnnouncementDisplay)
-
+function AnnouncementDisplay.new(Message: string,Duration: number,Username: string): AnnouncementDisplay -- ensuring that the initializer function returns the table which contains the other functions
+	local self: AnnouncementDisplay = setmetatable({}, AnnouncementDisplay) -- Creating the second table to combine both of the AnnouncementDisplay table and the new table
 	self.Message = Message
 	self.Duration = Duration
 	self.User = Username
 	self.Janitor = Janitor.new()
 
-	return self
+	return self -- returning the self(combained tables to call the other functions)
 end
 --//Clone the frame and place it in the MessageContainer for the player to see it
 function AnnouncementDisplay.CreateFrame(self: AnnouncementDisplay)
